@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игры - Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: rgb(49, 170, 160);
+        }
+
+        .center-block {
+            background: white;
+            border-radius: 60px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-block {
+            background-color: rgba(0, 0, 0, 0.212);
+            border-radius: 60px;
+            word-wrap: break-word;
+            overflow: auto;
+        }
+
+        .testc {
+            background: red;
+        }
+
+        .navbar {
+            background-color: rgba(166, 211, 224, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container">
+            <a href="/" style="font-size: 37px" class="navbar-brand">Quiz App</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a href="/quiz/create" style="font-size: 25px; color: rgb(255, 255, 255);"
+                            class="nav-link">Создать викторину</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/quiz/all" style="font-size: 25px; color: rgb(255, 255, 255);"
+                            class="nav-link">Викторины</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/quiz/my" style="font-size: 25px; color: rgb(255, 255, 255);"
+                            class="nav-link">Мои викторины</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button id="logout" class="btn btn-danger d-inline-flex">Выйти</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-sm-6 center-block mx-auto mt-3 p-4">
+                <label>Название викторины:</label>
+                <input type="text" name="quizName" id="quiz-name-input" class="form-control" autocomplete="off"
+                    required>
+
+                <button type="button" id="search-quiz-button" class="btn btn-success mt-2">Искать</button>
+            </div>
+        </div>
+        <div class="container quiz-block mt-4">
+            <div id="quiz-list" class="row justify-content-center">
+
+            </div>
+        </div>
+    </div>
+
+    <script id="quiz-pack-template" type="x-tmpl-mustache">
+        {{{{raw-helper}}}}
+        {{#quizzes}}
+        <div class="col-sm-4 m-3">
+            <div class="card" id={{{_id}}}>
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">
+                            Темы:
+                            {{#themes}}
+                                {{.}} 
+                            {{/themes}}
+                        </p>
+                        <button href="#" class="btn btn-success">Добавить</button>
+                </div>
+            </div>
+        </div>
+        {{/quizzes}}
+        {{{{/raw-helper}}}}
+    </script>
+
+    <script src="../../js/variables.js"></script>
+    <script src="../../js/logout.js"></script>
+    <script src="../../js/getQuizzes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+</body>
+
+</html>
